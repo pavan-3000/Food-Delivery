@@ -3,7 +3,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm install --production
+RUN npm install
 
 COPY public ./public
 COPY src ./src
@@ -12,6 +12,6 @@ COPY vite.config.js ./
 
 RUN npm run build
 
-EXPOSE 5173
+EXPOSE 80
 
-CMD ["npx", "vite", "preview", "--host", "--port", "5173"]
+CMD ["npx", "serve", "-s", "dist", "-l", "80"]
