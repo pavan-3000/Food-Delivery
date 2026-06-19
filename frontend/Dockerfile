@@ -3,12 +3,12 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY package*.json ./
+RUN npm install
+
 COPY vite.config.js ./
 COPY src/ ./src/
 COPY public/ ./public/
 COPY .eslintrc.cjs ./
-
-RUN npm install --production
 
 RUN npm run build
 
