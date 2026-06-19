@@ -2,13 +2,13 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm install --production
 
+COPY public ./public
+COPY src ./src
+COPY index.html ./
 COPY vite.config.js ./
-COPY src/ ./src/
-COPY public/ ./public/
-COPY .eslintrc.cjs ./
 
 RUN npm run build
 
